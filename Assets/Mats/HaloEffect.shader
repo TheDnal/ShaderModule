@@ -20,7 +20,6 @@ Shader "Custom/HaloEffect"
                 ZWrite Off
                 //ZTest GEqual
             Blend One One //additive
-            //Blend DstColor Zero  //multiplicative
 
             CGPROGRAM
             #pragma vertex vert
@@ -33,7 +32,7 @@ Shader "Custom/HaloEffect"
             float4 _ColourB;
             float _Scale;
 
-            #define TAU 6.28318530718 //2*PI
+            #define TAU 6.28318530718  //2*PI
 
             struct appdata //Mesh data
             {
@@ -64,12 +63,12 @@ Shader "Custom/HaloEffect"
             #if _MAP_COLOUR
                 return _ColourA;
             #elif _MAP_NORMAL
-                return float4 (i.normal, 1);
+                return float4 (i.normal, 1); //returns normals
             #elif _MAP_UV
-                return float4(i.uv, 0, 1);
+                return float4(i.uv, 0, 1); //returns UV
             #elif _MAP_BLEND
-                float xOffset = cos(i.uv.x * TAU * 4) * 0.05;
-            float t = cos((i.uv.y + xOffset - _Time.y * 0.1f) * TAU * 5 +
+                float xOffset = cos(i.uv.x * TAU * 6) * 0.05;
+                float t = cos((i.uv.y + xOffset - _Time.y * 0.25f) * TAU * 5 +
                 _Time.y * _Scale) * 0.5 + 0.5;
                 t *= 1 - i.uv.y;
                 float topBottomRemover = (abs(i.normal.y) < 0.999);
