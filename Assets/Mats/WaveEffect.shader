@@ -46,7 +46,7 @@ Shader "Custom/WaveEffect"
                 float2 waveCentre = (_WaveCentreX,_WaveCentreY);
                 float dist = distance(i.uv, waveCentre);
                 float4 white = (1,1,1,1);
-                float4 wave = cos(dist + _Time.y);
+                float4 wave = cos(dist * 10 + _Time.y);
                 fixed4 col = lerp(white, _Color, wave);
                 
                 return col;
