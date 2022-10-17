@@ -12,6 +12,8 @@ Shader "Custom/WaveEffect"
                 "Queue" = "Transparent" }
         Pass
         {
+            Cull off
+            ZWrite off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
