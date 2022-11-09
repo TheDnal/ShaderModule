@@ -21,7 +21,6 @@ public class JellyMovement : MonoBehaviour
         if(tick >= interval)
         {
             currT = Time.time;
-            Debug.Log(currT - oldT);
             oldT = currT;
             tick = 0;
             PushJellyFish();
